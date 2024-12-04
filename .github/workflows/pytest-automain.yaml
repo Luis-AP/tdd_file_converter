@@ -52,5 +52,10 @@ jobs:
     
     - name: Test with pytest
       run: |
-        # Ejecutar las pruebas
-        pytest
+          # Ejectuar las pruebas y generar reporte html
+          pytest --cov=services --cov-report=html
+    - name: Upload Test Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report-${{ matrix.os }}-python-${{ matrix.python-version }}
+        path: htmlcov
